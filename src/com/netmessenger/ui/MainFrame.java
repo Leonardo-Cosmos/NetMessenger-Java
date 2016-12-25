@@ -54,7 +54,7 @@ public class MainFrame extends JFrame {
 
 	private static final Logger LOGGER = Logger.getLogger(MainFrame.class.getSimpleName());
 	
-	private static final String FRAME_TITLE = "LAN Messenger - (%s)";
+	private static final String FRAME_TITLE = "Net Messenger - (%s)";
 	
 	private static final String FILE_MENU_TEXT = "File";
 	private static final String SEND_FILE_MENU_ITEM_TEXT = "Send file to friend...";
