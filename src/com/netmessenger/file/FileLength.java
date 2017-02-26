@@ -1,3 +1,4 @@
+/* 2016/7/26 */
 package com.netmessenger.file;
 
 public class FileLength {

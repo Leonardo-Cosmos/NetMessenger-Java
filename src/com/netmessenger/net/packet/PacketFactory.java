@@ -1,3 +1,4 @@
+/* 2016/3/24 */
 package com.netmessenger.net.packet;
 
 import java.util.HashMap;
