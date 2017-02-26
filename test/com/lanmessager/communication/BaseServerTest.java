@@ -1,3 +1,4 @@
+/* 2016/3/24 */
 package com.lanmessager.communication;
 
 import java.io.BufferedReader;

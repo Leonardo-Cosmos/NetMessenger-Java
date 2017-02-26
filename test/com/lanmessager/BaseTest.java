@@ -1,3 +1,4 @@
+/* 2016/3/24 */
 package com.lanmessager;
 
 import org.apache.log4j.PropertyConfigurator;
