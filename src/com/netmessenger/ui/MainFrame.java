@@ -74,6 +74,7 @@ public class MainFrame extends JFrame {
 	private static final String CHANGE_USER_NAME_MENU_ITEM_TEXT = "Change user name...";
 	
 	private static final String SEND_FILE_POPUP_MENU_ITEM_TEXT = "Send file...";
+	private static final String SEND_DIR_POPUP_MENU_ITEM_TEXT = "Send directory...";
 	private static final String REMOVE_FRIEND_POPUP_MENU_ITEM_TEXT = "Remove friend";
 	
 	private JFileChooser openFileChooser;
@@ -301,11 +302,17 @@ public class MainFrame extends JFrame {
 
 		popupMenu = new JPopupMenu();
 		
-		JMenuItem sendPopupMenuItem = new JMenuItem(SEND_FILE_POPUP_MENU_ITEM_TEXT);
-		sendPopupMenuItem.addActionListener(e -> {
+		JMenuItem sendFilePopupMenuItem = new JMenuItem(SEND_FILE_POPUP_MENU_ITEM_TEXT);
+		sendFilePopupMenuItem.addActionListener(e -> {
 			sendFileToSelectedFriend();
 		});
-		popupMenu.add(sendPopupMenuItem);
+		popupMenu.add(sendFilePopupMenuItem);
+		
+		JMenuItem sendDirPopupMenuItem = new JMenuItem(SEND_DIR_POPUP_MENU_ITEM_TEXT);
+		sendDirMenuItem.addActionListener(e -> {
+			sendDirectoryToSelectedFriend();
+		});
+		popupMenu.add(sendDirPopupMenuItem);
 		
 		JMenuItem removeFriendPopupMenuItem = new JMenuItem(REMOVE_FRIEND_POPUP_MENU_ITEM_TEXT);
 		removeFriendPopupMenuItem.addActionListener(e -> {
