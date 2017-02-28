@@ -6,6 +6,8 @@ public class ReceiveFileMessage extends Message {
 	private static final String KEY_PORT = "receiverPort";
 	private static final String KEY_FILE_ID = "fileId";
 	
+	private static final String KEY_DIR_ID = "dirId";
+	
 	@MessageKey(KEY_ACCEPT)
 	private boolean accept;
 	
@@ -14,6 +16,9 @@ public class ReceiveFileMessage extends Message {
 	
 	@MessageKey(KEY_FILE_ID)
 	private String fileId;
+	
+	@MessageKey(KEY_DIR_ID)
+	private String dirId;
 
 	public boolean isAccept() {
 		return accept;
@@ -37,6 +42,14 @@ public class ReceiveFileMessage extends Message {
 
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
+	}
+
+	public String getDirId() {
+		return dirId;
+	}
+
+	public void setDirId(String dirId) {
+		this.dirId = dirId;
 	}
 
 }

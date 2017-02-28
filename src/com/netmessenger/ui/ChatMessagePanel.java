@@ -5,7 +5,7 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
-public class ChatMessagePanel extends JPanel {
+public abstract class ChatMessagePanel extends JPanel {
 
 	/**
 	 * 

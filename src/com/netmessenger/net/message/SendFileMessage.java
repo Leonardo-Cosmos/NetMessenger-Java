@@ -1,11 +1,20 @@
 /* 2016/3/24 */
 package com.netmessenger.net.message;
 
+import java.io.File;
+
 public class SendFileMessage extends Message {
 	private static final String KEY_FILE_SIZE = "fileSize";
 	private static final String KEY_FILE_NAME = "fileName";
 	private static final String KEY_FILE_ID = "fileId";
+	
+	private static final String KEY_SUB_PATH = "subPath";
+	private static final String KEY_DIR_ID = "dirId";
+	
 	private static final String KEY_SENDER_ADDRESS = "senderAddress";
+	
+	private static final String FILE_PATH_JOIN_DELIMITER = File.separator;
+	private static final String FILE_PATH_SPLIT_DELIMITER = "\\" + File.separator;
 	
 	@MessageKey(KEY_FILE_SIZE)
 	private long fileSize;
@@ -15,6 +24,12 @@ public class SendFileMessage extends Message {
 	
 	@MessageKey(KEY_FILE_ID)
 	private String fileId;
+	
+	@MessageKey(KEY_SUB_PATH)
+	private String[] subPath;
+	
+	@MessageKey(KEY_DIR_ID)
+	private String dirId;
 	
 	@MessageKey(KEY_SENDER_ADDRESS)
 	private String senderAddress;
@@ -41,6 +56,22 @@ public class SendFileMessage extends Message {
 
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
+	}
+
+	public String getSubPath() {
+		return String.join(FILE_PATH_JOIN_DELIMITER, subPath);
+	}
+
+	public void setSubPath(String subPath) {
+		this.subPath = subPath.split(FILE_PATH_SPLIT_DELIMITER);
+	}
+
+	public String getDirId() {
+		return dirId;
+	}
+
+	public void setDirId(String dirId) {
+		this.dirId = dirId;
 	}
 
 	public String getSenderAddress() {

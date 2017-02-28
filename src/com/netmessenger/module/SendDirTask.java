@@ -2,6 +2,7 @@
 package com.netmessenger.module;
 
 import java.io.File;
+import java.util.Queue;
 
 import com.netmessenger.ui.SendDirPanel;
 
@@ -10,7 +11,11 @@ public class SendDirTask {
 	private File dir;
 	
 	private SendDirPanel panel;
+	
+	private String receiverAddress;
 
+	private Queue<String> fileQueue;
+	
 	public File getDir() {
 		return dir;
 	}
@@ -25,6 +30,22 @@ public class SendDirTask {
 
 	public void setPanel(SendDirPanel panel) {
 		this.panel = panel;
+	}
+
+	public String getReceiverAddress() {
+		return receiverAddress;
+	}
+
+	public void setReceiverAddress(String receiverAddress) {
+		this.receiverAddress = receiverAddress;
+	}
+
+	public Queue<String> getFileQueue() {
+		return fileQueue;
+	}
+
+	public void setFileQueue(Queue<String> fileQueue) {
+		this.fileQueue = fileQueue;
 	}
 	
 }

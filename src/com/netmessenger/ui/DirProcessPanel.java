@@ -9,19 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public abstract class DirProcessPanel extends ChatMessagePanel {
+public abstract class DirProcessPanel extends ProcessPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public static final String STATUS_INITIALIZE = "Initialize";
-	public static final String STATUS_ABORT = "Abort";
-	public static final String STATUS_START = "Start";
-	public static final String STATUS_SUCCEED = "Succeed";
-	public static final String STATUS_FAIL = "Fail";
-	public static final String STATUS_CANCEL = "Cancel";
 
 	private static final String CANCEL_BUTTON_TEXT = "Cancel";
 
@@ -40,8 +33,6 @@ public abstract class DirProcessPanel extends ChatMessagePanel {
 
 	protected final String dirName;
 
-	private String status;
-
 	public DirProcessPanel(String dirName) {
 		this.dirName = dirName;
 
@@ -58,37 +49,39 @@ public abstract class DirProcessPanel extends ChatMessagePanel {
 		fileProcessPanel.setLayout(panelBoxLayout);
 		
 		cancelButton = new JButton(getCancelButtonText());
-
-		status = STATUS_INITIALIZE;
 	}
 
-	public void succeed() {
+	@Override
+	public void succeed(Object result) {
 		statusLabel.setText(String.format(getStatusLabelTextSucceed(), dirName));
 
 		remove(cancelButton);
 
 		validate();
-		status = STATUS_SUCCEED;
+		super.succeed(result);
 	}
 
-	public void fail(String cause) {
+	@Override
+	public void fail(Object cause) {
 		statusLabel.setText(String.format(getStatusLabelTextFail(), dirName));
 
 		remove(cancelButton);
 
-		add(new JLabel(cause));
+		add(new JLabel((String) cause));
 
 		validate();
-		status = STATUS_FAIL;
+		super.fail(cause);
 	}
 	
+	@Override
 	public void abort() {
 		statusLabel.setText(String.format(getStatusLabelTextAbort(), dirName));
 		
 		validate();
-		status = STATUS_ABORT;
+		super.abort();
 	}
 	
+	@Override
 	public void start() {
 		statusLabel.setText(String.format(getStatusLabelTextStart(), dirName));
 		
@@ -96,16 +89,30 @@ public abstract class DirProcessPanel extends ChatMessagePanel {
 		add(cancelButton);
 		
 		validate();
-		status = STATUS_START;
+		super.start();
 	}
 	
+	@Override
 	public void cancel() {
 		statusLabel.setText(String.format(getStatusLabelTextCancel(), dirName));
 		
 		remove(cancelButton);
 		
 		validate();
-		status = STATUS_CANCEL;
+		super.cancel();
+	}
+	
+	public void addPanel(FileProcessPanel panel) {
+		if (panel == null) {
+			return;
+		}
+		
+		add(panel);
+		updateUI();
+	}
+
+	public JPanel getFileProcessPanel() {
+		return fileProcessPanel;
 	}
 
 	public void addCancelButtonActionListener(ActionListener l) {
@@ -114,10 +121,6 @@ public abstract class DirProcessPanel extends ChatMessagePanel {
 
 	public void removeCancelButtonActionListener(ActionListener l) {
 		cancelButton.removeActionListener(l);
-	}
-
-	public String getStatus() {
-		return status;
 	}
 
 	protected String getCancelButtonText() {
